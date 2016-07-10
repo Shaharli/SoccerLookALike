@@ -20,13 +20,54 @@
         android:textAllCaps="true"
         android:textColor="@color/colorWhite"
         android:textSize="24sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/changeIcons"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_below="@+id/title_main_screen"
+        android:weightSum="4">
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ico_body"
+            android:id="@+id/bodyIcon"
+            android:layout_weight="1"/>
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ico_head"
+            android:id="@+id/hairIcon"
+            android:layout_weight="1"/>
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ico_shirt"
+            android:id="@+id/shirtIcon"
+            android:layout_weight="1"/>
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ico_number"
+            android:id="@+id/numIcon"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/player"
         android:layout_centerInParent="true"
-        android:layout_below="@+id/title_main_screen">
+        android:layout_below="@+id/changeIcons">
 
     <ImageView
         android:id="@+id/bodyIV"
@@ -46,27 +87,42 @@
         android:layout_height="wrap_content"
         android:src="@drawable/hair_short" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/nameTV"
-        android:text="@string/player_name"
-        android:textAlignment="center"
-        android:textSize="18sp"
-        android:layout_alignBottom="@+id/bodyIV"
-        android:layout_marginBottom="220dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_centerVertical="true">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/numberTV"
-        android:text="@string/player_number"
-        android:textAlignment="center"
-        android:textSize="60sp"
-        android:layout_alignTop="@+id/nameTV"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="28dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/nameTV"
+                android:text="@string/player_name"
+                android:textAlignment="center"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/numberTV"
+                android:text="@string/player_number"
+                android:textAlignment="center"
+                android:textSize="60sp"
+                android:layout_alignTop="@+id/nameTV" />
+
+        </LinearLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/green"
+            android:text="@string/go"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold"
+            android:textSize="18sp"/>
 
     </RelativeLayout>
+
 
 </RelativeLayout>

@@ -3,4 +3,7 @@
     <string name="title_main_screen">Look A Like</string>
     <string name="player_name">Name</string>
     <string name="player_number">14</string>
+    <string name="go">GO!</string>
+    <string name="title_set_num">Set player number</string>
+    <string name="cancel">Cancel</string>
 </resources>
