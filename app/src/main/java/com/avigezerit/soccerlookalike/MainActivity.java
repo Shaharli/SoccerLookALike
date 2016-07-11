@@ -1,9 +1,7 @@
 package com.avigezerit.soccerlookalike;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -15,27 +13,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     static final String TAG = MainActivity.class.getSimpleName();
     static final int numRQ = 2;
+    static final int skinRQ = 3;
 
     TextView numTV;
+    ImageView bodyIV;
+    ImageView bodyIcon;
+    ImageView shirtIcon;
+    ImageView numberIcon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ImageView bodyIV = (ImageView) findViewById(R.id.bodyIcon);
-        ImageView shirtIV = (ImageView) findViewById(R.id.shirtIcon);
+        bodyIcon = (ImageView) findViewById(R.id.bodyIcon);
+        bodyIV = (ImageView) findViewById(R.id.bodyIV);
+        shirtIcon = (ImageView) findViewById(R.id.shirtIcon);
         ImageView hairIV = (ImageView) findViewById(R.id.hairIcon);
-        ImageView numberIV = (ImageView) findViewById(R.id.numIcon);
-
-        TextView nameTV = (TextView) findViewById(R.id.nameTV);
+        numberIcon = (ImageView) findViewById(R.id.numIcon);
         numTV = (TextView) findViewById(R.id.numberTV);
 
-
-        bodyIV.setOnClickListener(this);
-        shirtIV.setOnClickListener(this);
+        bodyIcon.setOnClickListener(this);
+        shirtIcon.setOnClickListener(this);
         hairIV.setOnClickListener(this);
-        numberIV.setOnClickListener(this);
+        numberIcon.setOnClickListener(this);
 
     }
 
@@ -43,21 +44,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bodyIcon:
-                AlertDialog shirtDialog = new AlertDialog.Builder(MainActivity.this).create();
-                shirtDialog.setTitle("shirt");
-                shirtDialog.setMessage("this is a msg ahirt");
-                shirtDialog.setButton(DialogInterface.BUTTON_POSITIVE, "OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Log.d(TAG, "clicked OK");
-                    }
-                });
-                shirtDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "NO", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Log.d(TAG, "clicked NO");
-                    }
-                });
+//                String currentSkinColor = bodyIV.getDrawable().getCurrent().toString();
+                Intent setSkinColorIntent = new Intent(MainActivity.this, SkinColorActivity.class);
+//                setSkinColorIntent.putExtra("currentColor", currentSkinColor);
+                startActivityForResult(setSkinColorIntent, skinRQ);
                 Log.d(TAG, "Clicked body");
                 break;
             case R.id.shirtIcon:
@@ -80,14 +70,55 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        switch (resultCode) {
 
-            case RESULT_OK:
-                String newNumOfPlayer = data.getStringExtra("number");
-                numTV.setText(newNumOfPlayer);
+        switch (requestCode) {
+            case numRQ:
+                switch (resultCode) {
+                    case RESULT_OK:
+                        String newNumOfPlayer = data.getStringExtra("number");
+                        numTV.setText(newNumOfPlayer);
+                        break;
+                    case RESULT_CANCELED:
+                        Toast.makeText(this, "Nothing changed", Toast.LENGTH_SHORT).show();
+                        break;
+                } break;
+            case skinRQ:
+                switch (resultCode) {
+                    case RESULT_OK:
+                        String newSkinColor = data.getStringExtra("color");
+                        setNewSkinColor(newSkinColor);
+                        break;
+                    case RESULT_CANCELED:
+                        Toast.makeText(this, "Nothing changed", Toast.LENGTH_SHORT).show();
+                        break;
+                } break;
+        }
+    }
+
+
+//    public void currentSkinColorChecker (ImageView imageView){
+//
+//        String current = bodyIV.getResources().getResourceEntryName((bodyIV.getId()));
+//
+//        switch (current){
+//            case "skin_color1":
+//                Log.d(TAG, "skin color 1");
+//                break;}
+////        bodyIV.setTag(R.drawable.skin_color1);
+////        int skinDrawableId = (Integer)bodyIV.getTag();
+//    }
+
+
+    public void setNewSkinColor(String newSkinColor) {
+        switch (newSkinColor) {
+            case "bright":
+                bodyIV.setImageResource(R.drawable.body_base_skint1);
                 break;
-            case RESULT_CANCELED:
-                Toast.makeText(this, "Nothing selected", Toast.LENGTH_SHORT).show();
+            case "mid":
+                bodyIV.setImageResource(R.drawable.body_base_skint2);
+                break;
+            case "dark":
+                bodyIV.setImageResource(R.drawable.body_base_skint3);
                 break;
         }
     }

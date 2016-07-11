@@ -6,4 +6,6 @@
     <string name="go">GO!</string>
     <string name="title_set_num">Set player number</string>
     <string name="cancel">Cancel</string>
+    <string name="title_set_skin">Set Skin Color</string>
+    <string name="title_set_shirt">Set team shirt</string>
 </resources>
