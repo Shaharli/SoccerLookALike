@@ -14,13 +14,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/title_main_screen"
-        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingTop="20dp"
         android:text="@string/title_main_screen"
         android:textAlignment="center"
         android:textAllCaps="true"
         android:textColor="@color/colorWhite"
+        android:textSize="24sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/playerNametitle"
+        android:paddingTop="20dp"
+        android:text="@string/defaultPlayerName"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="@color/colorWhite"
         android:textSize="24sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:layout_below="@+id/title_main_screen"/>
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,7 +42,7 @@
         android:paddingTop="@dimen/activity_vertical_margin"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:layout_below="@+id/title_main_screen"
+        android:layout_below="@+id/playerNametitle"
         android:weightSum="4">
 
         <ImageView
@@ -66,7 +79,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/player"
-        android:layout_centerInParent="true"
         android:layout_below="@+id/changeIcons">
 
     <ImageView
@@ -92,14 +104,20 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_centerVertical="true">
+            
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="70dp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/nameTV"
-                android:text="@string/player_name"
+                android:text="@string/defaultPlayerName"
+                android:textAllCaps="true"
                 android:textAlignment="center"
-                android:textSize="18sp" />
+                android:textSize="14sp"
+                android:textStyle="bold"/>
 
             <TextView
                 android:layout_width="match_parent"

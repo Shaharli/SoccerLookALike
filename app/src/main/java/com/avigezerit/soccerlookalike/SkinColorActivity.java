@@ -6,11 +6,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.view.View;
-import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-public class SkinColorActivity extends AppCompatActivity implements View.OnClickListener {
+public class SkinColorActivity extends AppCompatActivity implements  RadioGroup.OnClickListener {
 
     static final String TAG = SkinColorActivity.class.getSimpleName();
     RadioGroup skinColorRG;
@@ -29,28 +28,36 @@ public class SkinColorActivity extends AppCompatActivity implements View.OnClick
 
         skinColorRG = (RadioGroup) findViewById(R.id.skin_color_RG);
         ((RadioButton) findViewById(R.id.skin_color_rb1)).setChecked(true);
-        Button setColor = (Button) findViewById(R.id.setColorBtn);
-        Button cancelColor = (Button) findViewById(R.id.cancelColorBtn);
-        setColor.setOnClickListener(this);
-        cancelColor.setOnClickListener(this);
-
-
+//        Button setColor = (Button) findViewById(R.id.setColorBtn);
+//        Button cancelColor = (Button) findViewById(R.id.cancelColorBtn);
+//        setColor.setOnClickListener(this);
+//        cancelColor.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         Intent backAndSetNewSkinColor = new Intent();
-        switch (v.getId()){
-            case R.id.setColorBtn:
-                int selectedId = skinColorRG.getCheckedRadioButtonId();
-                selectedSkinColor = (RadioButton) findViewById(selectedId);
-                backAndSetNewSkinColor.putExtra("color", selectedSkinColor.getText());
-                setResult(Activity.RESULT_OK, backAndSetNewSkinColor);
-                break;
-            case R.id.cancelColorBtn:
-                setResult(Activity.RESULT_CANCELED, backAndSetNewSkinColor);
-                break;
-        } finish();
+        selectedSkinColor = (RadioButton) findViewById(v.getId());
+        backAndSetNewSkinColor.putExtra("color", selectedSkinColor.getText());
+        setResult(Activity.RESULT_OK, backAndSetNewSkinColor);
+        finish();
+    }
+
+
+//    @Override
+//    public void onClick(View v) {
+//        Intent backAndSetNewSkinColor = new Intent();
+//        switch (v.getId()){
+//            case R.id.setColorBtn:
+//                int selectedId = skinColorRG.getCheckedRadioButtonId();
+//                selectedSkinColor = (RadioButton) findViewById(selectedId);
+//                backAndSetNewSkinColor.putExtra("color", selectedSkinColor.getText());
+//                setResult(Activity.RESULT_OK, backAndSetNewSkinColor);
+//                break;
+//            case R.id.cancelColorBtn:
+//                setResult(Activity.RESULT_CANCELED, backAndSetNewSkinColor);
+//                break;
+//        } finish();
 
 
 //        int border = 3;
@@ -58,5 +65,5 @@ public class SkinColorActivity extends AppCompatActivity implements View.OnClick
 //        skinColor1IV.setBackgroundColor(Color.GREEN);
 
 
-    }
+//    }
 }

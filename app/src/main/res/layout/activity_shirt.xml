@@ -16,7 +16,7 @@
     <TextView
         android:id="@+id/title_set_shirt"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="1"
         android:gravity="center_horizontal|center_vertical"
         android:paddingTop="@dimen/activity_vertical_margin"
@@ -27,76 +27,10 @@
         android:textSize="24sp"
         android:textStyle="bold" />
 
-
-
-    <ScrollView
+    <ListView
         android:layout_width="match_parent"
-        android:layout_height="340dp"
-        android:layout_weight="1">
-
-
-        <GridLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:columnCount="2"
-            android:alignmentMode="alignBounds"
-            android:columnOrderPreserved="false">
-
-            <ImageView
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:id="@+id/barca_shirt"
-                android:layout_weight="1"
-                android:src="@drawable/shirt_barcelona" />
-
-            <ImageView
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:id="@+id/juve_shirt"
-                android:layout_weight="1"
-                android:src="@drawable/shirt_barcelona" />
-
-
-        </GridLayout>
-    </ScrollView>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        android:weightSum="2">
-
-        <Button
-            android:id="@+id/cancelShirtBtn"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal|bottom"
-            android:layout_weight="1"
-            android:background="@color/colorgray"
-            android:text="@string/cancel"
-            android:textColor="@color/colorWhite"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_marginRight="3dp"/>
-
-        <Button
-            android:id="@+id/setShirtBtn"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal|bottom"
-            android:layout_weight="1"
-            android:background="@color/green"
-            android:text="set"
-            android:textColor="@color/colorWhite"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_marginLeft="3dp"/>
-
-
-    </LinearLayout>
-
-
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:id="@+id/allTeamsLV" />
 
 </LinearLayout>
