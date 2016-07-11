@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/playerNametitle"
         android:paddingTop="20dp"
-        android:text="@string/defaultPlayerName"
+        android:text="@string/default_player_name"
         android:textAlignment="center"
         android:textAllCaps="true"
         android:textColor="@color/colorWhite"
@@ -91,7 +91,7 @@
         android:id="@+id/shirtIV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/shirt_juve" />
+        android:src="@drawable/shirt_default" />
 
     <ImageView
         android:id="@+id/hairIV"
@@ -113,7 +113,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/nameTV"
-                android:text="@string/defaultPlayerName"
+                android:text="@string/default_player_name"
                 android:textAllCaps="true"
                 android:textAlignment="center"
                 android:textSize="14sp"
@@ -123,7 +123,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/numberTV"
-                android:text="@string/player_number"
+                android:text="@string/default_player_number"
                 android:textAlignment="center"
                 android:textSize="60sp"
                 android:layout_alignTop="@+id/nameTV" />
@@ -131,6 +131,7 @@
         </LinearLayout>
 
         <Button
+            android:id="@+id/goBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"

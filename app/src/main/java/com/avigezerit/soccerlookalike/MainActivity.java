@@ -7,6 +7,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +25,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ImageView shirtIcon;
     ImageView shirtIV;
     ImageView numberIcon;
+    int newSkinColorId;
+
+    String currentSkinColor;
+    String currentTeamShirt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,41 +37,40 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         bodyIcon = (ImageView) findViewById(R.id.bodyIcon);
         bodyIV = (ImageView) findViewById(R.id.bodyIV);
-        bodyIV.setTag(R.drawable.body_base_skint1);
+        setCurrentSkinColor("default");
         shirtIcon = (ImageView) findViewById(R.id.shirtIcon);
         shirtIV = (ImageView) findViewById(R.id.shirtIV);
-        shirtIV.setTag(R.drawable.shirt_juve);
+        setCurrentTeamShirt("default");
         ImageView hairIV = (ImageView) findViewById(R.id.hairIcon);
         numberIcon = (ImageView) findViewById(R.id.numIcon);
         numTV = (TextView) findViewById(R.id.numberTV);
+
+        Button goBtn = (Button) findViewById(R.id.goBtn);
+        goBtn.setOnClickListener(this);
 
         bodyIcon.setOnClickListener(this);
         shirtIcon.setOnClickListener(this);
         hairIV.setOnClickListener(this);
         numberIcon.setOnClickListener(this);
 
-        if (savedInstanceState != null){
-            numTV.setText(savedInstanceState.getString("number"));
-            bodyIV.setImageResource(savedInstanceState.getInt("body"));
-            shirtIV.setImageResource(savedInstanceState.getInt("shirt"));
-        }
-
+        // TODO: 11/07/2016 : figure out how reverse images source
+//        if (savedInstanceState != null){
+//            numTV.setText(savedInstanceState.getString("number"));
+//            bodyIV.setImageResource(savedInstanceState.getInt("body"));
+//            shirtIV.setImageResource(savedInstanceState.getInt("shirt"));
+//        }
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bodyIcon:
-//                String currentSkinColor = bodyIV.getDrawable().getCurrent().toString();
                 Intent setSkinColorIntent = new Intent(MainActivity.this, SkinColorActivity.class);
-//                setSkinColorIntent.putExtra("currentColor", currentSkinColor);
                 startActivityForResult(setSkinColorIntent, skinRQ);
-                Log.d(TAG, "Clicked body");
                 break;
             case R.id.shirtIcon:
                 Intent setShirtIntent = new Intent(MainActivity.this, ShirtActivity.class);
                 startActivityForResult(setShirtIntent, shirtRQ);
-                Log.d(TAG, "Clicked shirt");
                 break;
             case R.id.hairIcon:
                 //change hair
@@ -76,8 +80,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Intent setNumIntent = new Intent(MainActivity.this, NumberActivity.class);
                 setNumIntent.putExtra("currentNumber", numTV.getText().toString());
                 startActivityForResult(setNumIntent, numRQ);
-                Log.d(TAG, "Clicked number");
                 break;
+            case R.id.goBtn:
+                Intent goToResultIntent = new Intent(MainActivity.this, ResultActivity.class);
+                goToResultIntent
+                        .putExtra("number", numTV.getText().toString())
+                        .putExtra("color", getCurrentSkinColor())
+                        .putExtra("shirt", getCurrentTeamShirt());
+                startActivity(goToResultIntent);
         }
     }
 
@@ -115,8 +125,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case skinRQ:
                 switch (resultCode) {
                     case RESULT_OK:
-                        String newSkinColor = data.getStringExtra("color");
-                        setNewSkinColor(newSkinColor);
+                        newSkinColorId = data.getIntExtra("color", 1);
+                        setNewSkinColor(newSkinColorId);
                         break;
                     case RESULT_CANCELED:
                         Toast.makeText(this, "Nothing changed", Toast.LENGTH_SHORT).show();
@@ -137,17 +147,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-    public void setNewSkinColor(String newSkinColor) {
-        switch (newSkinColor) {
-            case "bright":
+    public void setNewSkinColor(int newSkinColorId) {
+        switch (newSkinColorId) {
+            case R.id.btnSkin1:
                 bodyIV.setImageResource(R.drawable.body_base_skint1);
-                bodyIV.setTag(R.drawable.body_base_skint1);
+                setCurrentSkinColor("skint1");
                 break;
-            case "mid":
+            case R.id.btnSkin2:
                 bodyIV.setImageResource(R.drawable.body_base_skint2);
+                setCurrentSkinColor("skint2");
                 break;
-            case "dark":
+            case R.id.btnSkin3:
                 bodyIV.setImageResource(R.drawable.body_base_skint3);
+                setCurrentSkinColor("skint3");
+                break;
+            case R.id.btnSkin4:
+                bodyIV.setImageResource(R.drawable.body_base_skint4);
+                setCurrentSkinColor("skint4");
                 break;
         }
     }
@@ -156,17 +172,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (newShirt) {
             case "Juventus":
                 shirtIV.setImageResource(R.drawable.shirt_juve);
-                shirtIV.setTag(R.drawable.shirt_juve);
                 break;
             case "Barcelona":
                 shirtIV.setImageResource(R.drawable.shirt_barcelona);
-                shirtIV.setTag(R.drawable.shirt_barcelona);
                 break;
             case "Bayren":
                 shirtIV.setImageResource(R.drawable.shirt_bayern);
-                shirtIV.setTag(R.drawable.shirt_bayern);
                 break;
-        }
+        } setCurrentTeamShirt(newShirt);
     }
 
     @Override
@@ -182,11 +195,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        outState.putString("number", numTV.getText().toString());
-        outState.putInt("body", (Integer) (bodyIV.getTag()));
-        outState.putInt("shirt", ((Integer) shirtIV.getTag()));
-        super.onSaveInstanceState(outState);
+    public String getCurrentSkinColor() {
+        return currentSkinColor;
+    }
+
+    public void setCurrentSkinColor(String currentSkinColor) {
+        this.currentSkinColor = currentSkinColor;
+    }
+
+    public String getCurrentTeamShirt() {
+        return currentTeamShirt;
+    }
+
+    public void setCurrentTeamShirt(String currentTeamShirt) {
+        this.currentTeamShirt = currentTeamShirt;
     }
 }

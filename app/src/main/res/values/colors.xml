@@ -6,4 +6,8 @@
     <color name="colorWhite">#ffffff</color>
     <color name="green">#5da423</color>
     <color name="colorgray">#adadad</color>
+    <color name="skin1">#f8dcc5</color>
+    <color name="skin2">#d2b38f</color>
+    <color name="skin3">#976738</color>
+    <color name="skin4">#4A2913</color>
 </resources>

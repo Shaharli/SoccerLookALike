@@ -39,7 +39,8 @@
         android:inputType="number"
         android:textAlignment="center"
         android:textColorHint="@color/colorgray"
-        android:textSize="60sp" />
+        android:textSize="60sp"
+        android:focusable="true"/>
 
     <TextView
         android:id="@+id/alertError"
