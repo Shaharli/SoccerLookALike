@@ -1,147 +1,178 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_main_screen"
-    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:weightSum="3"
     tools:context="com.avigezerit.soccerlookalike.MainActivity">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/title_main_screen"
-        android:paddingTop="20dp"
-        android:text="@string/title_main_screen"
-        android:textAlignment="center"
-        android:textAllCaps="true"
-        android:textColor="@color/colorWhite"
-        android:textSize="24sp" />
+        android:layout_weight="1"
+        android:orientation="vertical">
 
-    <TextView
+        <TextView
+            android:id="@+id/title_main_screen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/title_main_screen"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="@color/colorWhite"
+            android:textSize="24sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="20dp">
+
+
+            <TextView
+                android:id="@+id/playerNametitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/title_main_screen"
+                android:layout_gravity="center_horizontal"
+                android:background="@color/yellow"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:text="@string/default_player_name"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textColor="@color/colorWhite"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/refreshIcon"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:src="@drawable/refresh"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/playerNametitle"
-        android:paddingTop="20dp"
-        android:text="@string/default_player_name"
-        android:textAlignment="center"
-        android:textAllCaps="true"
-        android:textColor="@color/colorWhite"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_below="@+id/title_main_screen"/>
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:id="@+id/changeIcons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+
+            <ImageView
+                android:id="@+id/shirtIcon"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginRight="16dp"
+                android:layout_weight="1"
+                android:src="@drawable/ico_shirt" />
+
+            <ImageView
+                android:id="@+id/numIcon"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:src="@drawable/ico_number" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/player"
+            android:layout_width="match_parent"
+            android:layout_height="350dp">
+
+            <ImageView
+                android:id="@+id/bodyIV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/body_base_skint1" />
+
+            <ImageView
+                android:id="@+id/shirtIV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/shirt_default" />
+
+            <ImageView
+                android:id="@+id/hairIV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/hair_short" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:orientation="vertical">
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp" />
+
+                <TextView
+                    android:id="@+id/nameOnShirtTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/default_player_name"
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/numberTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/nameOnShirtTV"
+                    android:text="@string/default_player_number"
+                    android:textAlignment="center"
+                    android:textSize="90sp" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/changeIcons"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:layout_below="@+id/playerNametitle"
-        android:weightSum="4">
-
-        <ImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:src="@drawable/ico_body"
-            android:id="@+id/bodyIcon"
-            android:layout_weight="1"/>
-
-        <ImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:src="@drawable/ico_head"
-            android:id="@+id/hairIcon"
-            android:layout_weight="1"/>
-
-        <ImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:src="@drawable/ico_shirt"
-            android:id="@+id/shirtIcon"
-            android:layout_weight="1"/>
-
-        <ImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:src="@drawable/ico_number"
-            android:id="@+id/numIcon"
-            android:layout_weight="1"/>
-
-    </LinearLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/player"
-        android:layout_below="@+id/changeIcons">
-
-    <ImageView
-        android:id="@+id/bodyIV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/body_base_skint1" />
-
-    <ImageView
-        android:id="@+id/shirtIV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/shirt_default" />
-
-    <ImageView
-        android:id="@+id/hairIV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/hair_short" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_centerVertical="true">
-            
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="70dp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/nameTV"
-                android:text="@string/default_player_name"
-                android:textAllCaps="true"
-                android:textAlignment="center"
-                android:textSize="14sp"
-                android:textStyle="bold"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/numberTV"
-                android:text="@string/default_player_number"
-                android:textAlignment="center"
-                android:textSize="60sp"
-                android:layout_alignTop="@+id/nameTV" />
-
-        </LinearLayout>
+        android:gravity="bottom"
+        android:orientation="vertical">
 
         <Button
             android:id="@+id/goBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
             android:background="@color/green"
             android:text="@string/go"
             android:textColor="@color/colorWhite"
-            android:textStyle="bold"
-            android:textSize="18sp"/>
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
-    </RelativeLayout>
+    </LinearLayout>
 
 
-</RelativeLayout>
+</LinearLayout>

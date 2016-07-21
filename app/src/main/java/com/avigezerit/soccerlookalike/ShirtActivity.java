@@ -30,18 +30,16 @@ public class ShirtActivity extends AppCompatActivity {
         ListView allTeamsLV = (ListView) findViewById(R.id.allTeamsLV);
 
         allteamsAL = new ArrayList<>();
-        allteamsAL.add("Barcelona");
-        allteamsAL.add("Juventus");
-        allteamsAL.add("Bayren");
-        allteamsAL.add("Barcelona");
-        allteamsAL.add("Juventus");
-        allteamsAL.add("Bayren");
-        allteamsAL.add("Barcelona");
-        allteamsAL.add("Juventus");
-        allteamsAL.add("Bayren");
-        allteamsAL.add("Barcelona");
-        allteamsAL.add("Juventus");
-        allteamsAL.add("Bayren");
+
+        allteamsAL.add((getResources().getString(R.string.juve)));
+        allteamsAL.add((getResources().getString(R.string.barcelona)));
+        allteamsAL.add((getResources().getString(R.string.atletico)));
+        allteamsAL.add((getResources().getString(R.string.bayern)));
+        allteamsAL.add((getResources().getString(R.string.arsenal)));
+        allteamsAL.add((getResources().getString(R.string.chelsea)));
+        allteamsAL.add((getResources().getString(R.string.dortmund)));
+        allteamsAL.add((getResources().getString(R.string.manchCity)));
+
 
         ArrayAdapter allTeamsAA = new ArrayAdapter(ShirtActivity.this, android.R.layout.simple_list_item_1, allteamsAL);
         allTeamsLV.setAdapter(allTeamsAA);

@@ -1,5 +1,7 @@
 package com.avigezerit.soccerlookalike;
 
+import android.graphics.Color;
+
 /**
  * Created by Shaharli on 11/07/2016.
  */
@@ -7,30 +9,23 @@ public class Player {
 
     private String firstName;
     private String lastName;
-    private String number;
+    private int number;
+    private Color skinTone;
     private String color;
-    private String shirt;
+    private int shirt;
 
-    public Player(String firstName, String lastName, String number, String color, String shirt) {
+    public Player(String firstName, String lastName, int number, Color skinTone, String color, int shirt) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.number = number;
         this.color = color;
+        this.skinTone = skinTone;
         this.shirt = shirt;
     }
 
-    public Player(String number, String color, String shirt) {
-        this.number = number;
-        this.color = color;
-        this.shirt = shirt;
-    }
 
-    public String getNumber() {
+    public int getNumber() {
         return number;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
     }
 
     public String getColor() {
@@ -41,11 +36,11 @@ public class Player {
         this.color = color;
     }
 
-    public String getShirt() {
+    public int getShirt() {
         return shirt;
     }
 
-    public void setShirt(String shirt) {
-        this.shirt = shirt;
+    public Color getSkinTone() {
+        return skinTone;
     }
 }

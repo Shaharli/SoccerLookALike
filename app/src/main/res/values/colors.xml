@@ -10,4 +10,11 @@
     <color name="skin2">#d2b38f</color>
     <color name="skin3">#976738</color>
     <color name="skin4">#4A2913</color>
+    <color name="yellow">#70ffff99</color>
+
+
+    <!--teams text color-->
+    <color name="darkBlue">#0f0658</color>
+    <color name="yellowBarca">#ffe320</color>
+
 </resources>
